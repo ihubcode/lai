@@ -1,40 +1,39 @@
-/*
-* @Author: ihubcode <1987357952@qq.com>
-* @Date:   2017-12-12 10:02:23
-* @Last Modified by:   ihubcode <1987357952@qq.com>
-* @Last Modified time: 2017-12-12 10:02:23
-*/
-
 const KoaClass = require('koa');
 const Router = require('./lib/router.js');
 const Middleware = require('./lib/middleware.js');
 const assert = require('assert');
 const debug = require('debug')('Lai:app');
-module.exports = class LaiClass extends KoaClass {
-    constructor(options = {}, ctx){
+class LaiClass extends KoaClass {
+    constructor(options = {}, ctx) {
         options.baseDir = options.baseDir || process.cwd;
         options.port = options.port ? options.port : 3611;
         options.host = options.host ? options.host : '127.0.0.1';
         super();
+
         this.ctx = ctx;
+        console.log('ctx:', ctx);
+        // this.app = ctx.app;
         this.port = options.port;
         this.host = options.host;
         this.BaseContext = this.context;
         this.controller = this.BaseContext;
         this.service = this.BaseContext;
     }
-    loadAll(){
+    loadAll() {
+        // 加载路由
         this.use(Router.routes());
         this.use(Router.allowedMethods());
+        // 加载其他中间件
         this.loadMiddleware();
     }
-    loadMiddleware(){
-    
+    loadMiddleware() {
+
     }
-    run(){
+    run() {
         this.loadAll();
         this.listen(this.port);
         console.log('A new application by Lai which run successfully!');
         console.log(`Server running at http://${this.host}:${this.port}`);
     }
 }
+module.exports = LaiClass
