@@ -5,7 +5,7 @@
 * @Last Modified time: 2017-12-12 10:02:23
 */
 const BaseContext = require(../../core/lib/baseContext.js);
-module.exports = class Products extends baseContext {
+module.exports = class Products extends BaseContext {
     constructor(ctx) {
         super();
         this.ctx = ctx;
