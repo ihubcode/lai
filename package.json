@@ -2,9 +2,9 @@
   "name": "lai",
   "version": "1.0.0",
   "description": "A framework base on koa",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "米阳",
